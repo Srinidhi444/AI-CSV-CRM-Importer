@@ -17,12 +17,8 @@
   "engines": {
     "node": ">=18"
   },
-  "devEngines": {
-    "packageManager": {
-      "name": "npm",
-      "version": "10.9.4"
-    }
-  },
+  
+
   "workspaces": [
     "apps/*",
     "packages/*"
