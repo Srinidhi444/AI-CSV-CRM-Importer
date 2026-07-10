@@ -1,4 +1,4 @@
-import type { ProcessCsvResponse } from "./types";
+import type { ProcessCsvResponse } from "./type";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
