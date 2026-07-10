@@ -2,27 +2,26 @@ interface StatusBadgeProps {
   value: string | null;
 }
 
-const styles: Record<string, string> = {
-  GOOD_LEAD_FOLLOW_UP:
-    "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300",
-  DID_NOT_CONNECT:
-    "bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300",
-  BAD_LEAD:
-    "bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300",
-  SALE_DONE:
-    "bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300",
+const config: Record<string, { bg: string; fg: string; label: string }> = {
+  GOOD_LEAD_FOLLOW_UP: { bg: "var(--status-good-bg)", fg: "var(--status-good-fg)", label: "Good Lead" },
+  DID_NOT_CONNECT: { bg: "var(--status-neutral-bg)", fg: "var(--status-neutral-fg)", label: "Not Connected" },
+  BAD_LEAD: { bg: "var(--status-bad-bg)", fg: "var(--status-bad-fg)", label: "Bad Lead" },
+  SALE_DONE: { bg: "var(--status-info-bg)", fg: "var(--status-info-fg)", label: "Sale Done" },
 };
 
 export function StatusBadge({ value }: StatusBadgeProps) {
-  if (!value) {
+  if (!value || !config[value]) {
     return <span className="text-sm text-[var(--muted-foreground)]">—</span>;
   }
 
+  const { bg, fg, label } = config[value];
+
   return (
     <span
-      className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${styles[value] ?? "bg-slate-100 text-slate-700"}`}
+      className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium"
+      style={{ backgroundColor: bg, color: fg }}
     >
-      {value}
+      {label}
     </span>
   );
 }
